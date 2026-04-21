@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지방4사업부 영업 성과 보고 | 2026년 4월</title>
+<style>
+  :root {
+    --navy:   #1B3A6B;
+    --navy2:  #2A4F8F;
+    --ice:    #E8EDF5;
+    --green:  #1A6B3A;
+    --green2: #EAF5ED;
+    --green3: #B7DFC4;
+    --red:    #A32D2D;
+    --red2:   #FDF0F0;
+    --red3:   #EDBBBB;
+    --amber:  #7A4800;
+    --amber2: #FFF4E0;
+    --gray:   #64748B;
+    --lgray:  #F1F5F9;
+    --border: #E2E8F0;
+    --text:   #1E293B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+    background: #F8FAFC;
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: var(--navy);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+  .page-header h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .page-header .meta {
+    font-size: 0.8rem;
+    color: #CADCFC;
+    text-align: right;
+    line-height: 1.8;
+    white-space: nowrap;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 1.75rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+  }
+  .section-num {
+    background: var(--navy);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 2px;
+  }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 640px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .kpi-card {
+    border-radius: 8px;
+    padding: 1rem 0.85rem;
+    border-top: 4px solid transparent;
+  }
+  .kpi-card.navy  { background: var(--ice);    border-color: var(--navy);  }
+  .kpi-card.green { background: var(--green2);  border-color: var(--green); }
+  .kpi-card.amber { background: var(--amber2);  border-color: var(--amber); }
+  .kpi-card.red   { background: var(--red2);    border-color: var(--red);   }
+
+  .kpi-val   { font-size: 1.8rem; font-weight: 700; line-height: 1.2; }
+  .kpi-card.navy  .kpi-val { color: var(--navy);  }
+  .kpi-card.green .kpi-val { color: var(--green); }
+  .kpi-card.amber .kpi-val { color: var(--amber); }
+  .kpi-card.red   .kpi-val { color: var(--red);   }
+
+  .kpi-label { font-size: 0.78rem; font-weight: 600; color: var(--text); margin: 0.35rem 0 0.2rem; }
+  .kpi-sub   { font-size: 0.72rem; color: var(--gray); }
+
+  /* ── NARRATIVE ── */
+  .narrative {
+    background: var(--lgray);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+  }
+  .narrative p {
+    font-size: 0.875rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .narrative p:last-child { margin-bottom: 0; }
+  .narrative .n-num { font-weight: 700; color: var(--navy); margin-right: 0.4rem; }
+
+  /* ── TWO-COL CARDS ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  .card {
+    border-radius: 8px;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid transparent;
+  }
+  .card.green-card { background: var(--green2); border-color: var(--green3); }
+  .card.red-card   { background: var(--red2);   border-color: var(--red3);   }
+  .card.amber-card { background: var(--amber2); border-color: #F5CFA0; }
+  .card.ice-card   { background: var(--ice);    border-color: #C5D4EC; }
+
+  .card-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .card.green-card .card-title { color: var(--green); }
+  .card.red-card   .card-title { color: var(--red);   }
+  .card.amber-card .card-title { color: var(--amber); }
+  .card.ice-card   .card-title { color: var(--navy);  }
+
+  .card ul { list-style: none; padding: 0; }
+  .card ul li {
+    font-size: 0.82rem;
+    padding: 0.18rem 0;
+    color: var(--text);
+    display: flex;
+    gap: 0.4rem;
+  }
+  .card ul li::before { content: "·"; font-weight: 700; flex-shrink: 0; }
+  .card.green-card li::before { color: var(--green); }
+  .card.red-card   li::before { color: var(--red);   }
+  .card.amber-card li::before { color: var(--amber); }
+
+  .card .note {
+    font-size: 0.78rem;
+    font-style: italic;
+    margin-top: 0.65rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+  }
+  .card.green-card .note { color: var(--green); }
+  .card.red-card   .note { color: var(--red);   }
+
+  /* ── REP CARDS (TOP 2) ── */
+  .rep-card {
+    background: var(--green2);
+    border: 1px solid var(--green3);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+  }
+  .rep-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+  .rep-name { font-size: 1rem; font-weight: 700; color: var(--navy); }
+  .rep-office { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+  .rep-rate { font-size: 1.5rem; font-weight: 700; color: var(--green); text-align: right; }
+  .rep-rate span { font-size: 0.72rem; color: var(--gray); display: block; }
+  .rep-card ul { list-style: none; border-top: 1px solid var(--green3); padding-top: 0.6rem; }
+  .rep-card ul li { font-size: 0.82rem; color: var(--text); padding: 0.16rem 0; display: flex; gap: 0.4rem; }
+  .rep-card ul li::before { content: "·"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .rep-bench { font-size: 0.78rem; font-weight: 700; color: var(--navy); margin: 0.65rem 0 0.3rem; }
+
+  /* ── FOCUS TABLE ── */
+  .focus-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .focus-table th {
+    background: var(--ice);
+    color: var(--navy);
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  .focus-table td {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .focus-table tr:nth-child(odd) td { background: #FAFBFD; }
+  .focus-table tr:nth-child(even) td { background: var(--red2); }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.55rem;
+    border-radius: 20px;
+    margin-bottom: 0.3rem;
+  }
+  .badge-red   { background: var(--red);   color: #fff; }
+  .badge-amber { background: #C87000;      color: #fff; }
+
+  /* ── STAGE DISTRIBUTION ── */
+  .stage-bar { display: flex; border-radius: 6px; overflow: hidden; height: 36px; margin: 0.75rem 0 0.4rem; }
+  .stage-seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .stat-chips { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .stat-chip {
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    border-left: 4px solid transparent;
+    flex: 1;
+    min-width: 130px;
+  }
+  .stat-chip .chip-val  { font-size: 1.5rem; font-weight: 700; }
+  .stat-chip .chip-label { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+  .chip-up    { background: var(--green2); border-color: var(--green); }
+  .chip-up    .chip-val { color: var(--green); }
+  .chip-down  { background: var(--red2);   border-color: var(--red);   }
+  .chip-down  .chip-val { color: var(--red); }
+  .chip-focus { background: var(--amber2); border-color: var(--amber);  }
+  .chip-focus .chip-val { color: var(--amber); }
+
+  .alert {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--red);
+    background: var(--red2);
+    border-left: 3px solid var(--red);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0 6px 6px 0;
+    margin: 0.5rem 0 1rem;
+  }
+
+  /* ── STRATEGY TABLE ── */
+  .strategy-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .strategy-table th {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--navy2);
+    text-align: left;
+  }
+  .strategy-table td {
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .strategy-table tr:nth-child(odd) td  { background: #fff; }
+  .strategy-table tr:nth-child(even) td { background: var(--lgray); }
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #fff;
+  }
+  .rank-1 { background: var(--red); }
+  .rank-2 { background: var(--amber); }
+  .rank-3 { background: var(--navy); }
+  .effect { color: var(--green); font-weight: 700; }
+
+  /* ── COMMENT ── */
+  .comment-box {
+    background: var(--ice);
+    border-left: 5px solid var(--navy2);
+    border-radius: 0 8px 8px 0;
+    padding: 1.1rem 1.4rem;
+  }
+  .comment-box p { font-size: 0.875rem; color: var(--text); margin-bottom: 0.65rem; }
+  .comment-box p:last-child { margin-bottom: 0; font-weight: 700; color: var(--navy); }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: var(--lgray);
+    border-top: 1px solid var(--border);
+    padding: 0.75rem 2.5rem;
+    font-size: 0.75rem;
+    color: var(--gray);
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <h1>지방4사업부 &nbsp;영업 성과 보고</h1>
+    <div class="meta">
+      보고일: 2026년 4월 기준<br>
+      작성: 로컬 영업소장
+    </div>
+  </div>
+
+  <!-- 01 이달 현황 요약 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <span class="section-title">이달 현황 요약 &nbsp;|&nbsp; 2026년 1~4월 누계</span>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card navy">
+        <div class="kpi-val">250건</div>
+        <div class="kpi-label">총 방문 건수</div>
+        <div class="kpi-sub">담당자 30명</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-val">42.8%</div>
+        <div class="kpi-label">긍정 반응률</div>
+        <div class="kpi-sub">107건 긍정 반응</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-val">48.8%</div>
+        <div class="kpi-label">직거래 전환율</div>
+        <div class="kpi-sub">약속 8,600 → 확인 4,200</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-val">47.5%</div>
+        <div class="kpi-label">우량 고객 비율 (4단계+)</div>
+        <div class="kpi-sub">평균단계 3.47 → 3.35 (4개월 연속 하락)</div>
+      </div>
+    </div>
+
+    <div class="narrative">
+      <p><span class="n-num">1</span>1~4월 누계 방문 250건, 긍정 반응률 42.8%로 양호한 활동량을 유지했으나, 고객 평균단계가 3.47 → 3.35로 4개월 연속 하락하며 포트폴리오 품질 개선이 시급하다.</p>
+      <p><span class="n-num">2</span>직거래 방문의 긍정률(68%)이 제품 방문(31%)의 2.2배로 직거래 전략 고도화 가능성을 확인했으나, 전환율(48.8%)은 절반 수준에 머물러 팔로업 체계 보강이 필요하다.</p>
+      <p><span class="n-num">3</span>담당자 간 평균단계 격차가 2.14단계(최고 4.71 vs. 최저 2.57)에 달해 상위 성과자의 역량 공유 및 하위 담당자 집중 코칭이 5월 최우선 과제이다.</p>
+    </div>
+  </div>
+
+  <!-- 02 우수 담당자 TOP 2 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <span class="section-title">우수 담당자 TOP 2 — 벤치마킹 포인트</span>
+    </div>
+
+    <div class="two-col">
+      <div class="rep-card">
+        <div class="rep-header">
+          <div>
+            <div class="rep-name">류태양</div>
+            <div class="rep-office">청주1사무소</div>
+          </div>
+          <div class="rep-rate">83%<span>긍정률</span></div>
+        </div>
+        <ul>
+          <li>방문 6건 모두 부정 반응 0건 달성. 직거래·제품 방문 균형 유지.</li>
+          <li>청주성모병원 고객을 4단계 → 6단계로 2단계 상승 견인.</li>
+        </ul>
+        <div class="rep-bench">▶ 벤치마킹 포인트</div>
+        <ul>
+          <li>방문 전 고객 정보 사전 파악 → 맞춤형 디테일 제공.</li>
+          <li>목표달성·추가방문 필요 피드백 적극 활용.</li>
+          <li>상위 담당자 교육 자료로 적극 활용 권고.</li>
+        </ul>
+      </div>
+
+      <div class="rep-card">
+        <div class="rep-header">
+          <div>
+            <div class="rep-name">배준호</div>
+            <div class="rep-office">광주2사무소</div>
+          </div>
+          <div class="rep-rate">71%<span>긍정률</span></div>
+        </div>
+        <ul>
+          <li>방문 7건, 부정 반응 0건. 직거래 확인율 90% 이상 달성.</li>
+          <li>을지대학교병원 고객 6단계 유지, 전주한일내과 직거래 500만원 전액 확인.</li>
+        </ul>
+        <div class="rep-bench">▶ 벤치마킹 포인트</div>
+        <ul>
+          <li>직거래 전 사전 협의 철저 → 높은 확인금액 전환율.</li>
+          <li>상급종합~의원까지 다층 거래처 동시 관리.</li>
+          <li>직거래 성과 공유 세션 개최 추진.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 집중 관리 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <span class="section-title">집중 관리 필요 담당자 — 원인 가설 · 관리 방향</span>
+    </div>
+
+    <table class="focus-table">
+      <thead>
+        <tr>
+          <th style="width:14%">담당자</th>
+          <th style="width:16%">주요 지표</th>
+          <th style="width:37%">원인 가설</th>
+          <th style="width:33%">관리 방향</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>양지은</strong><br><small style="color:var(--gray)">광주1사무소</small><br><span class="badge badge-red">긍정 0건</span></td>
+          <td>긍정 0건<br>전략재검토 2건</td>
+          <td>고객 관계 초기 구축 단계 가능성. 상급종합병원 위주 방문으로 접근 난이도 높음. 제품 디테일 역량 부족 추정.</td>
+          <td>소장 동행 방문 2회 실시. 제품 Q&amp;A 역할극 훈련. 의원급 소규모 거래처 단기 성과 집중.</td>
+        </tr>
+        <tr>
+          <td><strong>허성민</strong><br><small style="color:var(--gray)">전주1사무소</small><br><span class="badge badge-red">부정률 57%</span></td>
+          <td>부정 4건<br>부정률 57%</td>
+          <td>직거래 방문 집중이나 사전 준비 미흡 추정. 직거래 실패 2건, 부정 반응 4건으로 접근법 자체 점검 필요.</td>
+          <td>직거래 협상 스크립트 재점검. 배준호 담당자 성공 사례 공유. 2주 내 주간 1:1 면담 실시.</td>
+        </tr>
+        <tr>
+          <td><strong>전세영</strong><br><small style="color:var(--gray)">광주1사무소</small><br><span class="badge badge-amber">평균단계 2.57</span></td>
+          <td>긍정률 17%<br>평균단계 2.57</td>
+          <td>전략재검토 피드백 다수로 거래처별 맞춤 전략 부재. 평균단계 최하위로 저단계 고객 비중 과다.</td>
+          <td>고객 단계별 접근 전략 재수립. 3단계 고객 집중 육성 미션 부여. 월 2회 이상 소장 관찰 동행.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 04 고객단계 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <span class="section-title">고객단계 변화 인사이트 — 200명 / 1~4월</span>
+    </div>
+
+    <div class="stat-chips">
+      <div class="stat-chip chip-up">
+        <div class="chip-val">38명</div>
+        <div class="chip-label">단계 상승 (전년도 대비)</div>
+      </div>
+      <div class="stat-chip chip-down">
+        <div class="chip-val">52명</div>
+        <div class="chip-label">단계 하락 (전년도 대비)</div>
+      </div>
+      <div class="stat-chip chip-focus">
+        <div class="chip-val">27명</div>
+        <div class="chip-label">3단계 — 5월 집중 공략 구간</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:0.3rem;font-size:0.78rem;font-weight:700;color:var(--navy)">4월 기준 단계 분포 (총 200명)</div>
+    <div class="stage-bar">
+      <div class="stage-seg" style="width:27.5%;background:#DC2626">1단계<br>55명</div>
+      <div class="stage-seg" style="width:11.5%;background:#EA580C">2단계<br>23명</div>
+      <div class="stage-seg" style="width:13.5%;background:#D97706">3단계<br>27명</div>
+      <div class="stage-seg" style="width:14.5%;background:#2563EB">4단계<br>29명</div>
+      <div class="stage-seg" style="width:17%;background:#16A34A">5단계<br>34명</div>
+      <div class="stage-seg" style="width:16%;background:#15803D">6단계<br>32명</div>
+    </div>
+    <div class="alert">1단계(27.5%) 최다 — 순감 –14명 발생 (상승 38명 &lt; 하락 52명)</div>
+
+    <div class="two-col">
+      <div class="card green-card">
+        <div class="card-title">주목할 상승</div>
+        <ul>
+          <li>충북대01(오재원) : 1 → 4단계 &nbsp;<small style="color:var(--gray)">조예린 담당</small></li>
+          <li>광주미래약02(한도영) : 3 → 6단계 &nbsp;<small style="color:var(--gray)">신채원 담당</small></li>
+          <li>청주성모병05(이서현) : 4 → 6단계 &nbsp;<small style="color:var(--gray)">류태양 담당</small></li>
+          <li>대전온누리04(장미란) : 4 → 6단계 &nbsp;<small style="color:var(--gray)">박선일 담당</small></li>
+          <li>아산정형외08(정예은) : 4 → 6단계 &nbsp;<small style="color:var(--gray)">남도현 담당</small></li>
+        </ul>
+        <div class="note">공통점: 직거래·일만사&amp;웰체크 목적 방문 + 목표달성 피드백 병행.</div>
+      </div>
+
+      <div class="card red-card">
+        <div class="card-title">경고 신호 하락</div>
+        <ul>
+          <li>대전삼성의08(이은진) : 6 → 3단계 &nbsp;<small style="color:var(--gray)">박선일 담당</small></li>
+          <li>대전온누리03(장미란) : 4 → 1단계 &nbsp;<small style="color:var(--gray)">한지훈 담당</small></li>
+          <li>조선대04(윤재호) : 5 → 3단계 &nbsp;<small style="color:var(--gray)">최예준 담당</small></li>
+          <li>충남아산내01(이재현) : 4 → 2단계 &nbsp;<small style="color:var(--gray)">김준혁 담당</small></li>
+          <li>대전메디팜08(김보라) : 6 → 4단계 &nbsp;<small style="color:var(--gray)">류태양 담당</small></li>
+        </ul>
+        <div class="note">공통점: 방문 이후 팔로업 부재 / 직거래 실패 후 관계 소원화.</div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:0.75rem">
+      <div class="card ice-card">
+        <div class="card-title">전체 단계 현황 (4월 기준)</div>
+        <p style="font-size:0.82rem">1단계 55명(27.5%) · 2단계 23명 · 3단계 27명 · 4단계 29명 · 5단계 34명 · 6단계 32명</p>
+        <p style="font-size:0.82rem;color:var(--red);font-weight:600;margin-top:0.5rem">▶ 1단계 고객 27.5%로 최다. 상승 38명 &lt; 하락 52명으로 순감 14명 발생.</p>
+      </div>
+      <div class="card amber-card">
+        <div class="card-title">다음달 집중 공략 구간</div>
+        <p style="font-size:0.82rem">현 3단계 27명 → 4단계 진입 성공 시 우량 고객 비율 47.5% → 61% 도달.</p>
+        <p style="font-size:0.82rem;color:var(--amber);font-weight:600;margin-top:0.5rem">▶ 4단계 → 3단계 이탈 고객 13명 재상승도 병행 추진. 소장 동행 방문 우선 배정.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 전략 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <span class="section-title">5월 전략 우선순위 3가지</span>
+    </div>
+
+    <table class="strategy-table">
+      <thead>
+        <tr>
+          <th style="width:6%">순위</th>
+          <th style="width:24%">전략 과제</th>
+          <th style="width:47%">실행 방안</th>
+          <th style="width:23%">기대 효과</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center"><span class="rank-badge rank-1">1</span></td>
+          <td><strong>3단계 고객 27명 집중 전환</strong></td>
+          <td>담당자별 3단계 고객 리스트 공유 → 소장 동행 방문 우선 배정. 직거래·일만사 목적 전환 방문 설계.</td>
+          <td class="effect">우량 고객 비율<br>47.5% → 61% 목표</td>
+        </tr>
+        <tr>
+          <td style="text-align:center"><span class="rank-badge rank-2">2</span></td>
+          <td><strong>하위 3인 집중 코칭</strong></td>
+          <td>양지은·허성민·전세영 주간 1:1 면담. 류태양·배준호 성공 방문 사례 발표 세션 1회 개최 (5월 2주차).</td>
+          <td class="effect">긍정률 최소<br>10%p 개선 목표</td>
+        </tr>
+        <tr>
+          <td style="text-align:center"><span class="rank-badge rank-3">3</span></td>
+          <td><strong>고려중 → 직거래 전환 루틴화</strong></td>
+          <td>방문 후 2주 내 팔로업 콜·자료 발송 표준화. 고려중 101건 중 3단계 이상 고객부터 우선 적용.</td>
+          <td class="effect">직거래 전환율<br>48.8% → 60% 목표</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 06 소장 코멘트 -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <span class="section-title">소장 코멘트 — 임원 보고 핵심 메시지</span>
+    </div>
+
+    <div class="comment-box">
+      <p>1~4월 활동량은 기준치를 충족했으나, 고객 평균단계 지속 하락과 부정 반응 집중 담당자 존재는 조직 전체의 경쟁력 약화 신호로 판단하며, 5월은 '숫자보다 단계 질'을 핵심 관리 지표로 전환할 것입니다.</p>
+      <p>상위 2인(류태양·배준호)의 직거래 성공 방정식을 전 팀원이 체득할 수 있도록 사례 공유 세션을 즉시 추진하고, 3단계 고객 27명의 4단계 진입을 5월 팀 공동 미션으로 설정하겠습니다.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="page-footer">
+    <span>지방4사업부 &nbsp;|&nbsp; 2026년 4월</span>
+    <span>영업소장 작성</span>
+  </div>
+
+</div>
+</body>
+</html>
